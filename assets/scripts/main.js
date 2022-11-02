@@ -21,9 +21,15 @@ function init() {
  * @returns {Array<Object>} An array of recipes found in localStorage
  */
 function getRecipesFromStorage() {
-  // A9. TODO - Complete the functionality as described in this function
+  // A9. DONE? - Complete the functionality as described in this function
   //           header. It is possible in only a single line, but should
   //           be no more than a few lines.
+  let recipeArray = [];
+  for (let i = 0; i < localStorage.length; i++) {
+    const key = localStorage.key(i)
+    recipeArray = JSON.parse(localStorage.getItem(key));
+  }
+  return recipeArray;
 }
 
 /**
@@ -34,11 +40,30 @@ function getRecipesFromStorage() {
  * @param {Array<Object>} recipes An array of recipes
  */
 function addRecipesToDocument(recipes) {
-  // A10. TODO - Get a reference to the <main> element
-  // A11. TODO - Loop through each of the recipes in the passed in array,
+  // A10. DONE - Get a reference to the <main> element
+  let mainElement = document.querySelector("main");
+  // A11. DONE? - Loop through each of the recipes in the passed in array,
   //            create a <recipe-card> element for each one, and populate
   //            each <recipe-card> with that recipe data using element.data = ...
   //            Append each element to <main>
+  for (let currentRecipe = 0; currentRecipe < recipes.length; currentRecipe++) {
+    const newRecipe = document.createElement("recipe-card");
+
+    newRecipe.data = {
+      "imgSrc": recipes[currentRecipe].imgSrc,
+      "imgAlt": recipes[currentRecipe].imgAlt,
+      "titleLnk": recipes[currentRecipe].titleLink,
+      "titleTxt": recipes[currentRecipe].titleTxt,
+      "organization": recipes[currentRecipe].organization,
+      "rating": recipes[currentRecipe].rating,
+      "numRatings": recipes[currentRecipe].numRatings,
+      "lengthTime": recipes[currentRecipe].lengthTime,
+      "ingredients": recipes[currentRecipe].ingredients
+    };
+
+    mainElement.append(newRecipe);
+  }
+  //console.log(mainElement);
 }
 
 /**
@@ -60,7 +85,7 @@ function saveRecipesToStorage(recipes) {
 function initFormHandler() {
 
   // B2. TODO - Get a reference to the <form> element
-  
+
   // B3. TODO - Add an event listener for the 'submit' event, which fires when the
   //            submit button is clicked
 
@@ -77,7 +102,7 @@ function initFormHandler() {
 
   // B10. TODO - Get a reference to the "Clear Local Storage" button
   // B11. TODO - Add a click event listener to clear local storage button
-  
+
   // Steps B12 & B13 will occur inside the event listener from step B11
   // B12. TODO - Clear the local storage
   // B13. TODO - Delete the contents of <main>
