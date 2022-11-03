@@ -52,7 +52,7 @@ function addRecipesToDocument(recipes) {
     newRecipe.data = {
       "imgSrc": recipes[currentRecipe].imgSrc,
       "imgAlt": recipes[currentRecipe].imgAlt,
-      "titleLnk": recipes[currentRecipe].titleLink,
+      "titleLnk": recipes[currentRecipe].titleLnk,
       "titleTxt": recipes[currentRecipe].titleTxt,
       "organization": recipes[currentRecipe].organization,
       "rating": recipes[currentRecipe].rating,

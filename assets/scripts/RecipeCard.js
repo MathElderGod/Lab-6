@@ -125,45 +125,26 @@ class RecipeCard extends HTMLElement {
 
     // A6. DONE? - Select the <article> we added to the Shadow DOM in the constructor
     let articleElement = this.shadowRoot.querySelector("article");
+    //console.log(articleElement);
 
     // A7. DONE? - Set the contents of the <article> with the <article> template given in
     //           cardTemplate.html and the data passed in (You should only have one <article>,
     //           do not nest an <article> inside another <article>). You should use Template
     //           literals (tempalte strings) and element.innerHTML for this.
-    let currentImage = document.getElementsByTagName("img");
-    console.log(currentImage);
-    currentImage.src = data.imgSrc;
+    let currentImage = document.createElement("img").innerHTML;
     currentImage.alt = data.imgAlt;
-
+    currentImage.src = data.imgSrc;
+    console.log(currentImage.alt);
+    console.log(currentImage.src);
     articleElement.append(currentImage);
-
-    let currentTitle = document.getElementsByClassName("title");
-    currentTitle.href = data.titleLink;
-    currentTitle.textContent = data.titleTxt;
-
-    articleElement.append(currentTitle);
-
-    let currentOrganization = document.getElementsByClassName("organization");
-    currentOrganization.textContent = data.organization;
-
-    articleElement.append(currentOrganization);
-
-    let currentRatingContainer = document.getElementsByClassName("rating");
-    let currentSpan = currentRatingContainer.getElementsByTagName("span");
-    currentSpan[0].textContent = data.rating;
-    currentSpan[1].textContent = data.numRatings;
-
-    articleElement.append(currentRatingContainer);
-
-    let currentTime = document.getElementsByTagName("time");
-    currentTime.textContent = data.lengthTime;
-
-    articleElement.append(currentTime);
-
-    let currentIngrediants = document.getElementsByClassName("ingredients");
-    currentIngrediants.textContent = data.ingredients;
-
-    articleElement.append(currentIngrediants);
+    
+    //console.log(data.imgSrc);
+    //console.log(data.imgAlt);
+    //console.log(data.titleLnk);
+    //console.log(data.titleTxt);
+    //console.log(data.organization);
+    //console.log(data.lengthTime);
+    //console.log(data.ingredients);
   }
 }
 
