@@ -46,9 +46,6 @@ function addRecipesToDocument(recipes) {
   //            create a <recipe-card> element for each one, and populate
   //            each <recipe-card> with that recipe data using element.data = ...
   //            Append each element to <main>
-  if (!recipes) {
-    return;
-  }
   for (let currentRecipe = 0; currentRecipe < recipes.length; currentRecipe++) {
     const newRecipe = document.createElement("recipe-card");
     newRecipe.data = {
@@ -109,7 +106,20 @@ function initFormHandler() {
     for (const [key, value] of formData) {
       recipeObject[key] = value;
     }
-    addRecipesToDocument(recipeObject);
+    let newRecipe = document.createElement("recipe-card");
+    let mainElement = document.querySelector("main");
+    newRecipe.data = {
+      "imgSrc": recipeObject.imgSrc,
+      "imgAlt": recipeObject.imgAlt,
+      "titleLnk": recipeObject.titleLnk,
+      "titleTxt": recipeObject.titleTxt,
+      "organization": recipeObject.organization,
+      "rating": recipeObject.rating,
+      "numRatings": recipeObject.numRatings,
+      "lengthTime": recipeObject.lengthTime,
+      "ingredients": recipeObject.ingredients
+    };
+    mainElement.append(newRecipe);
     let updatedRecipes = getRecipesFromStorage();
     updatedRecipes.push(recipeObject);
     localStorage.setItem("recipes", JSON.stringify(updatedRecipes));
