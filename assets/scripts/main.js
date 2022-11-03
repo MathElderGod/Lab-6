@@ -71,9 +71,6 @@ function saveRecipesToStorage(recipes) {
   // B1. DONE - Complete the functionality as described in this function
   //            header. It is possible in only a single line, but should
   //            be no more than a few lines.
-  if (!recipes) {
-    return;
-  }
   localStorage.setItem("recipes", JSON.stringify(recipes));
 }
 
@@ -82,6 +79,7 @@ function saveRecipesToStorage(recipes) {
  * <button>.
  */
 function initFormHandler() {
+
 
   // B2. DONE - Get a reference to the <form> element
   let currentForm = document.getElementById("new-recipe");
@@ -101,7 +99,8 @@ function initFormHandler() {
   // B8. DONE - Append this new <recipe-card> to <main>
   // B9. DONE - Get the recipes array from localStorage, add this new recipe to it, and
   //            then save the recipes array back to localStorage
-  function submitNewRecipe() {
+  function submitNewRecipe(event) {
+    event.preventDefault();
     const formData = new FormData(currentForm);
     let recipeObject = {};
 
@@ -137,7 +136,6 @@ function initFormHandler() {
       "lengthTime": recipeObject.lengthTime,
       "ingredients": recipeObject.ingredients
     });
-    //console.log(updatedRecipes)
     localStorage.setItem("recipes", JSON.stringify(updatedRecipes));
   }
 
