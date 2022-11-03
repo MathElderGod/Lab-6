@@ -140,7 +140,15 @@ class RecipeCard extends HTMLElement {
         currentRatingImgSrc = "assets/images/icons/0-star.svg";
         currentRatingImgAlt = "0 stars";
         break;
+      case '0':
+        currentRatingImgSrc = "assets/images/icons/0-star.svg";
+        currentRatingImgAlt = "0 stars";
+        break;
       case 1:
+        currentRatingImgSrc = "assets/images/icons/1-star.svg";
+        currentRatingImgAlt = "1 stars";
+        break;
+      case '1':
         currentRatingImgSrc = "assets/images/icons/1-star.svg";
         currentRatingImgAlt = "1 stars";
         break;
@@ -148,7 +156,15 @@ class RecipeCard extends HTMLElement {
         currentRatingImgSrc = "assets/images/icons/2-star.svg";
         currentRatingImgAlt = "2 stars";
         break;
+      case '2':
+        currentRatingImgSrc = "assets/images/icons/2-star.svg";
+        currentRatingImgAlt = "2 stars";
+        break;
       case 3:
+        currentRatingImgSrc = "assets/images/icons/3-star.svg";
+        currentRatingImgAlt = "3 stars";
+        break;
+      case '3':
         currentRatingImgSrc = "assets/images/icons/3-star.svg";
         currentRatingImgAlt = "3 stars";
         break;
@@ -156,7 +172,15 @@ class RecipeCard extends HTMLElement {
         currentRatingImgSrc = "assets/images/icons/4-star.svg";
         currentRatingImgAlt = "4 stars";
         break;
+      case '4':
+        currentRatingImgSrc = "assets/images/icons/4-star.svg";
+        currentRatingImgAlt = "4 stars";
+        break;
       case 5:
+        currentRatingImgSrc = "assets/images/icons/5-star.svg";
+        currentRatingImgAlt = "5 stars";
+        break;
+      case '5':
         currentRatingImgSrc = "assets/images/icons/5-star.svg";
         currentRatingImgAlt = "5 stars";
         break;
