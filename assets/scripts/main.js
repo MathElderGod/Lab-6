@@ -21,15 +21,10 @@ function init() {
  * @returns {Array<Object>} An array of recipes found in localStorage
  */
 function getRecipesFromStorage() {
-  // A9. DONE? - Complete the functionality as described in this function
+  // A9. DONE - Complete the functionality as described in this function
   //           header. It is possible in only a single line, but should
   //           be no more than a few lines.
-  let recipeArray = [];
-  for (let i = 0; i < localStorage.length; i++) {
-    const key = localStorage.key(i)
-    recipeArray = JSON.parse(localStorage.getItem(key));
-  }
-  return recipeArray;
+  return JSON.parse(localStorage.getItem(localStorage.key(0)));
 }
 
 /**
@@ -42,13 +37,12 @@ function getRecipesFromStorage() {
 function addRecipesToDocument(recipes) {
   // A10. DONE - Get a reference to the <main> element
   let mainElement = document.querySelector("main");
-  // A11. DONE? - Loop through each of the recipes in the passed in array,
+  // A11. DONE - Loop through each of the recipes in the passed in array,
   //            create a <recipe-card> element for each one, and populate
   //            each <recipe-card> with that recipe data using element.data = ...
   //            Append each element to <main>
   for (let currentRecipe = 0; currentRecipe < recipes.length; currentRecipe++) {
     const newRecipe = document.createElement("recipe-card");
-
     newRecipe.data = {
       "imgSrc": recipes[currentRecipe].imgSrc,
       "imgAlt": recipes[currentRecipe].imgAlt,
@@ -60,10 +54,8 @@ function addRecipesToDocument(recipes) {
       "lengthTime": recipes[currentRecipe].lengthTime,
       "ingredients": recipes[currentRecipe].ingredients
     };
-
     mainElement.append(newRecipe);
   }
-  //console.log(mainElement);
 }
 
 /**

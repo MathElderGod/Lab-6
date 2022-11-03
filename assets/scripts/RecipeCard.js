@@ -92,7 +92,8 @@ class RecipeCard extends HTMLElement {
   time {
     color: #70757A;
     font-size: 12px;
-  }`;
+  }
+  `;
 
     // A5. DONE - Append the <style> and <article> elements to the Shadow DOM
     shadow.append(styleElement, articleElement);
@@ -108,43 +109,77 @@ class RecipeCard extends HTMLElement {
    * @param {Object} data - The data to pass into the <recipe-card>, must be of the
    *                        following format:
    *                        {
-   *                          "imgSrc": "string",
-   *                          "imgAlt": "string",
-   *                          "titleLnk": "string",
-   *                          "titleTxt": "string",
-   *                          "organization": "string",
-   *                          "rating": number,
-   *                          "numRatings": number,
-   *                          "lengthTime": "string",
-   *                          "ingredients": "string"
+   *                          "imgSrc": "string",       //DONE
+   *                          "imgAlt": "string",       //DONE
+   *                          "titleLnk": "string",     //DONE
+   *                          "titleTxt": "string",     //DONE
+   *                          "organization": "string", //DONE
+   *                          "rating": number,         //DONE
+   *                          "numRatings": number,     //DONE
+   *                          "lengthTime": "string",   //DONE
+   *                          "ingredients": "string"   //DONE
    *                        }
    */
   set data(data) {
     // If nothing was passed in, return
     if (!data) return;
 
-    // A6. DONE? - Select the <article> we added to the Shadow DOM in the constructor
+    // A6. DONE - Select the <article> we added to the Shadow DOM in the constructor
     let articleElement = this.shadowRoot.querySelector("article");
-    //console.log(articleElement);
 
-    // A7. DONE? - Set the contents of the <article> with the <article> template given in
+    // A7. DONE - Set the contents of the <article> with the <article> template given in
     //           cardTemplate.html and the data passed in (You should only have one <article>,
     //           do not nest an <article> inside another <article>). You should use Template
     //           literals (tempalte strings) and element.innerHTML for this.
-    let currentImage = document.createElement("img").innerHTML;
-    currentImage.alt = data.imgAlt;
-    currentImage.src = data.imgSrc;
-    console.log(currentImage.alt);
-    console.log(currentImage.src);
-    articleElement.append(currentImage);
-    
-    //console.log(data.imgSrc);
-    //console.log(data.imgAlt);
-    //console.log(data.titleLnk);
-    //console.log(data.titleTxt);
-    //console.log(data.organization);
-    //console.log(data.lengthTime);
-    //console.log(data.ingredients);
+
+    const currentRating = data.rating;
+    let currentRatingImgSrc;
+    let currentRatingImgAlt;
+    switch (currentRating) {
+      case 0:
+        currentRatingImgSrc = "assets/images/icons/0-star.svg";
+        currentRatingImgAlt = "0 stars";
+        break;
+      case 1:
+        currentRatingImgSrc = "assets/images/icons/1-star.svg";
+        currentRatingImgAlt = "1 stars";
+        break;
+      case 2:
+        currentRatingImgSrc = "assets/images/icons/2-star.svg";
+        currentRatingImgAlt = "2 stars";
+        break;
+      case 3:
+        currentRatingImgSrc = "assets/images/icons/3-star.svg";
+        currentRatingImgAlt = "3 stars";
+        break;
+      case 4:
+        currentRatingImgSrc = "assets/images/icons/4-star.svg";
+        currentRatingImgAlt = "4 stars";
+        break;
+      case 5:
+        currentRatingImgSrc = "assets/images/icons/5-star.svg";
+        currentRatingImgAlt = "5 stars";
+        break;
+      default:
+        break;
+    }
+
+    articleElement.innerHTML = `
+    <img src="${data.imgSrc}" alt="${data.imgAlt}">
+    <p class="title">
+      <a href="${data.titleLnk}">${data.titleTxt}</a>
+    </p>
+    <p class="organization">${data.organization}</p>
+    <div class="rating">
+      <span>${data.rating}</span>
+      <img src="${currentRatingImgSrc}" alt="${currentRatingImgAlt}">
+      <span>(${data.numRatings})</span>
+  </div>
+  <time>${data.lengthTime}</time>
+  <p class="ingredients">
+    ${data.ingredients}
+  </p>
+  `;
   }
 }
 
