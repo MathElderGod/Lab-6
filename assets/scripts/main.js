@@ -82,12 +82,12 @@ function saveRecipesToStorage(recipes) {
  */
 function initFormHandler() {
   // B2. DONE - Get a reference to the <form> element
-  let currentForm = document.getElementById("new-recipe");
+  var currentForm = document.getElementById("new-recipe");
 
   // B3. DONE - Add an event listener for the 'submit' event, which fires when the
   //            submit button is clicked
-  let submitButton = document.querySelector("[type='submit']");
-  submitButton.addEventListener("click", submitNewRecipe);
+  let submitForm = document.querySelector("form");
+  submitForm.addEventListener("submit", submitNewRecipe);
 
   // Steps B4-B9 will occur inside the event listener from step B3
   // B4. DONE - Create a new FormData object from the <form> element reference above
