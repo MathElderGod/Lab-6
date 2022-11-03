@@ -24,7 +24,12 @@ function getRecipesFromStorage() {
   // A9. DONE - Complete the functionality as described in this function
   //           header. It is possible in only a single line, but should
   //           be no more than a few lines.
-  return JSON.parse(localStorage.getItem(localStorage.key(0)));
+  if (localStorage.getItem("recipes") == null) {
+    let emptyArray = [];
+    return emptyArray;
+  } else {
+    return JSON.parse(localStorage.getItem("recipes"));
+  }
 }
 
 /**
@@ -79,8 +84,6 @@ function saveRecipesToStorage(recipes) {
  * <button>.
  */
 function initFormHandler() {
-
-
   // B2. DONE - Get a reference to the <form> element
   let currentForm = document.getElementById("new-recipe");
 
@@ -103,39 +106,12 @@ function initFormHandler() {
     event.preventDefault();
     const formData = new FormData(currentForm);
     let recipeObject = {};
-
     for (const [key, value] of formData) {
       recipeObject[key] = value;
     }
-
-    let newRecipe = document.createElement("recipe-card");
-
-    newRecipe.data = {
-      "imgSrc": recipeObject.imgSrc,
-      "imgAlt": recipeObject.imgAlt,
-      "titleLnk": recipeObject.titleLnk,
-      "titleTxt": recipeObject.titleTxt,
-      "organization": recipeObject.organization,
-      "rating": recipeObject.rating,
-      "numRatings": recipeObject.numRatings,
-      "lengthTime": recipeObject.lengthTime,
-      "ingredients": recipeObject.ingredients
-    };
-
-    let mainElement = document.querySelector("main");
-    mainElement.append(newRecipe);
-    let updatedRecipes = JSON.parse(localStorage.getItem("recipes"));
-    updatedRecipes.push({
-      "imgSrc": recipeObject.imgSrc,
-      "imgAlt": recipeObject.imgAlt,
-      "titleLnk": recipeObject.titleLnk,
-      "titleTxt": recipeObject.titleTxt,
-      "organization": recipeObject.organization,
-      "rating": recipeObject.rating,
-      "numRatings": recipeObject.numRatings,
-      "lengthTime": recipeObject.lengthTime,
-      "ingredients": recipeObject.ingredients
-    });
+    addRecipesToDocument(recipeObject);
+    let updatedRecipes = getRecipesFromStorage();
+    updatedRecipes.push(recipeObject);
     localStorage.setItem("recipes", JSON.stringify(updatedRecipes));
   }
 

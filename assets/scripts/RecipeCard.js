@@ -131,7 +131,6 @@ class RecipeCard extends HTMLElement {
     //           cardTemplate.html and the data passed in (You should only have one <article>,
     //           do not nest an <article> inside another <article>). You should use Template
     //           literals (tempalte strings) and element.innerHTML for this.
-
     const currentRating = data.rating;
     let currentRatingImgSrc;
     let currentRatingImgAlt;
@@ -185,6 +184,8 @@ class RecipeCard extends HTMLElement {
         currentRatingImgAlt = "5 stars";
         break;
       default:
+        currentRatingImgSrc = "";
+        currentRatingImgAlt = "";
         break;
     }
 
